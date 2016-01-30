@@ -1,5 +1,8 @@
 package com.brightgreenstar.accounting.utils;
 
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -41,5 +44,10 @@ public class AppUtils {
             return  Long.parseLong(string);
         }catch(NumberFormatException e){}
         return 0;
+    }
+
+    public static String createUploadUrl() throws Exception{
+        BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+        return blobstoreService.createUploadUrl("/upload");
     }
 }
